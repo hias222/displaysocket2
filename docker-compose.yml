@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  websocket-backend:
+    container_name: websocket-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    links:
+      - "mqtt:mqtt"
+    ports:
+      - '4001:4001'
+  mqtt:
+    container_name: mqtt
+    image: eclipse-mosquitto
+    ports:
+      - '1883:1883' 
+      - '9001:9001'

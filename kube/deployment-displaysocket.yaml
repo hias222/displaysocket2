@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: displaysocket
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: displaysocket
+  template:
+    metadata:
+      labels:
+        app: displaysocket
+    spec:
+      containers:
+        - name: app
+          image: hias222/displaysocket:0.1.0
+          ports:
+            - containerPort: 4001
+              name: default
+              protocol: TCP
+          env:
+            - name: MQTT_URL
+              value: mqtt://mqtt-mosquitto
+          imagePullPolicy: Always
