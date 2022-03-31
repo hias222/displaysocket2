@@ -8,7 +8,7 @@ require('dotenv').config();
 const mqttConfig = require("./connect/mqttSettings");
 const connectFactory = require("./connect/connectFactory");
 
-const port = process.env.PORT || 4001;
+const port = process.env.PORT || 4002;
 const index = require("./routes/index");
 const topic_name = process.env.CHANNEL_DATA || "mainchannel"
 const today = new Date();
