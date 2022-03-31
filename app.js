@@ -60,6 +60,9 @@ io.on("connection", socket => {
   socket.on("error", (error) => {
     console.log(error)
   })
+  socket.on("connect_error", (error) => {
+    console.log(error)
+  })
 });
 
 server.listen(port, () => console.log(`<app> websocket backend Listening on port ${port}`));

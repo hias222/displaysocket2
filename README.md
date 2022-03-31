@@ -20,6 +20,9 @@ docker pull eclipse-mosquitto:2
 docker run -d -p 1883:1883 -p 9001:9001 --name mqtt --hostname mqtt --rm -v /tmp/mosquitto:/mosquitto/config eclipse-mosquitto:2
 
 docker run -p 1883:1883 -p 9001:9001 --name mqtt --hostname mqtt --rm -v /tmp/mosquitto:/mosquitto/config eclipse-mosquitto:2
+docker run -p 1883:1883 -p 9001:9001 -v $(pwd)/mosquitto.conf:/mosqtto/config/mosquitto.conf eclipse-mosquitto:2
+
+/usr/local/opt/mosquitto/sbin/mosquitto -c /Users/MFU/tmp/mosquitto.conf
 
 # -v mosquitto.conf:/mosquitto/config/mosquitto.conf
 
