@@ -9,6 +9,7 @@ const mqttConfig = require("./connect/mqttSettings");
 const connectFactory = require("./connect/connectFactory");
 
 const port = process.env.PORT || 4002;
+const host = process.env.HOST || 'localhost';
 const index = require("./routes/index");
 const topic_name = process.env.CHANNEL_DATA || "mainchannel"
 const today = new Date();
@@ -65,7 +66,7 @@ io.on("connection", socket => {
   })
 });
 
-server.listen(port, () => console.log(`<app> websocket backend Listening on port ${port}`));
+server.listen(port,host, () => console.log(`<app> websocket backend Listening on port ${port}`));
 
 client.on('connect', function () {
   console.log("<app> websocket backend connected");
