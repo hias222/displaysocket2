@@ -10,6 +10,7 @@ const connectFactory = require("./connect/connectFactory");
 
 const port = process.env.PORT || 4002;
 const host = process.env.HOST || 'localhost';
+const frontendurl = process.env.FRONTENDURL || 'http://localhost:3000';
 const index = require("./routes/index");
 const topic_name = process.env.CHANNEL_DATA || "mainchannel"
 const today = new Date();
@@ -49,7 +50,7 @@ const server = http.createServer(app);
 const io = socketIo(server, { 
   path: '/ws/socket.io',
   cors: {
-    origin: "http://localhost:3000",
+    origin: frontendurl,
     methods: ["GET", "POST"]
   }
 }); // < Interesting!
