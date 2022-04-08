@@ -43,10 +43,16 @@ const app = express();
 
 app.use(index);
 app.use(cors());
-app.options('*', cors());
+app.options('*', cors()); //preflight
 
 const server = http.createServer(app);
-const io = socketIo(server, { path: '/ws/socket.io' }); // < Interesting!
+const io = socketIo(server, { 
+  path: '/ws/socket.io',
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
+  }
+}); // < Interesting!
 
 // I dont know it !!!
 //io.origins('*:*') // for latest version
