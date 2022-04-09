@@ -176,7 +176,6 @@ function storeBaseData(message) {
 async function sendBaseData(socket) {
   // we need io.sockets.socket();
   try {
-
     if (headermessage.event === "0") {
       var basemessage = {
         type: 'message',
@@ -188,11 +187,11 @@ async function sendBaseData(socket) {
 
       var newmessage = { ...basemessage, ...JSON.parse(jsondiff) }
       socket.emit("FromAPI", JSON.stringify(newmessage));
+      console.log('send ' +  JSON.stringify(newmessage))
       return;
     } else {
-
       socket.emit("FromAPI", JSON.stringify(headermessage));
-
+      console.log('send ' +  JSON.stringify(headermessage))
       if (start.type === "message" || start.type === "clock") {
         var timediff = Date.now() - timestart;
         var newtime = Math.floor((timestart + timediff) / 1000);
@@ -214,6 +213,7 @@ async function sendBaseData(socket) {
 
       for (let lane of lanemessages) {
         socket.emit("FromAPI", JSON.stringify(lane));
+        console.log('send ' +  JSON.stringify(lane))
       }
 
     }
