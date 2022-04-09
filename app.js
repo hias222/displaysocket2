@@ -64,7 +64,11 @@ if (debug) console.log('<app> check io.origins on connection issues ')
 
 io.on("connection", socket => {
   sendBaseData(socket)
-  socket.on("disconnect", () => console.log("websocket backend Client disconnected"));
+  socket.on("disconnect", () => console.log("<pp> websocket backend Client disconnected"));
+  socket.on("connection", (data) => {
+    console.log("<app> websocket backend Client connecteddisconnected")
+    console.log(data)
+  });
   socket.on("error", (error) => {
     console.log(error)
   })
