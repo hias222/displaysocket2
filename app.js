@@ -47,7 +47,7 @@ app.use(cors());
 app.options('*', cors()); //preflight
 
 const server = http.createServer(app);
-const io = socketIo(server, { 
+const io = socketIo(server, {
   path: '/ws/socket.io',
   cors: {
     origin: frontendurl,
@@ -63,12 +63,10 @@ if (debug) console.log('<app> Websockets on /ws/socket.io on port:  ' + port)
 if (debug) console.log('<app> check io.origins on connection issues ')
 
 io.on("connection", socket => {
+  console.log("<app> websocket backend Client connected")
+  console.log(data)
   sendBaseData(socket)
-  socket.on("disconnect", () => console.log("<pp> websocket backend Client disconnected"));
-  socket.on("connection", (data) => {
-    console.log("<app> websocket backend Client connecteddisconnected")
-    console.log(data)
-  });
+  socket.on("disconnect", () => console.log("<app> websocket backend Client disconnected"));
   socket.on("error", (error) => {
     console.log(error)
   })
@@ -77,7 +75,7 @@ io.on("connection", socket => {
   })
 });
 
-server.listen(port,host, () => console.log(`<app> websocket backend Listening on port ${port}`));
+server.listen(port, host, () => console.log(`<app> websocket backend Listening on port ${port}`));
 
 client.on('connect', function () {
   console.log("<app> websocket backend connected");
