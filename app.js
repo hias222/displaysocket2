@@ -74,7 +74,7 @@ io.on("connection", socket => {
   })
 });
 
-server.listen(port, host, () => console.log(`<app> websocket backend Listening on port ${port}`));
+server.listen(port, host, () => console.log(`<app> websocket backend Listening on port ${host}:${port}`));
 
 client.on('connect', function () {
   console.log("<app> websocket backend connected");
